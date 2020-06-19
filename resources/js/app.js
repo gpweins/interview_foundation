@@ -5,8 +5,11 @@
  */
 
 require('./bootstrap');
+import BootstrapVue from 'bootstrap-vue';
 
 window.Vue = require('vue');
+
+Vue.use(BootstrapVue);
 
 /**
  * The following block of code may be used to automatically register your
