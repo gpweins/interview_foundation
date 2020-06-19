@@ -1943,14 +1943,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'GitHubTokenForm',
   data: function data() {
     return {
       form: {
-        token: ''
+        token: this.token
       }
     };
+  },
+  props: {
+    token: {
+      required: true,
+      type: String
+    }
   },
   computed: {
     showAlert: function showAlert() {

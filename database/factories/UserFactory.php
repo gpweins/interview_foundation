@@ -27,3 +27,7 @@ $factory->define(User::class, function (Faker $faker) {
         'github_token' => null,
     ];
 });
+
+$factory->state(User::class, 'withToken', [
+    'github_token' => 'has_encrypted_token'
+]);

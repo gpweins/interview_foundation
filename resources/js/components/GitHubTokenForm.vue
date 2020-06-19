@@ -39,8 +39,15 @@
         data () {
             return {
                 form: {
-                    token: ''
+                    token: this.token
                 }
+            }
+        },
+
+        props: {
+            token: {
+                required: true,
+                type: String
             }
         },
 

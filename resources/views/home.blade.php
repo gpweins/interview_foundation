@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    <github-token-form></github-token-form>
+                    <github-token-form token={{ $token ? $token : '' }}></github-token-form>
                 </div>
             </div>
         </div>
