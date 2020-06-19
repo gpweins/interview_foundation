@@ -1969,7 +1969,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     onSubmit: function onSubmit() {
-      axios.put('/save-token', {
+      axios.put('/github/token', {
         token: this.form.token
       }).then(function (response) {
         console.log(response.data);

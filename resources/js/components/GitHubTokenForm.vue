@@ -64,7 +64,7 @@
         methods: {
             onSubmit () {
                 axios
-                    .put('/save-token', {
+                    .put('/github/token', {
                         token: this.form.token
                     })
                     .then(function(response) {

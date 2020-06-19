@@ -17,7 +17,7 @@ class SaveGitHubTokenTest extends TestCase
      */
     public function test_guest_cannot_save_data()
     {
-        $response = $this->putJson('/save-token', [
+        $response = $this->putJson('/github/token', [
             'token'=> '0123456789'
         ]);
 
@@ -32,7 +32,7 @@ class SaveGitHubTokenTest extends TestCase
     {
         $user = factory(User::class)->create();
 
-        $response = $this->actingAs($user)->putJson('/save-token', [
+        $response = $this->actingAs($user)->putJson('/github/token', [
             'token' => ''
         ]);
 
@@ -56,7 +56,7 @@ class SaveGitHubTokenTest extends TestCase
             ->with('0123456789')
             ->andReturn('encrypted_token');
 
-        $response = $this->actingAs($user)->putJson('/save-token', [
+        $response = $this->actingAs($user)->putJson('/github/token', [
             'token' => '0123456789'
         ]);
 
@@ -76,7 +76,7 @@ class SaveGitHubTokenTest extends TestCase
     {
         $user = factory(User::class)->create();
 
-        $response = $this->actingAs($user)->putJson('/save-token', [
+        $response = $this->actingAs($user)->putJson('/github/token', [
             'token' => '0123456789'
         ]);
 

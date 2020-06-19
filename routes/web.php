@@ -22,5 +22,7 @@ Auth::routes();
 
 Route::middleware('auth')->group(function() {
     Route::get('/home', 'HomeController')->name('home');
-    Route::put('/save-token', 'SaveGitHubToken');
+    Route::prefix('github')->group(function () {
+        Route::put('/token', 'SaveGitHubToken');
+    });
 });
