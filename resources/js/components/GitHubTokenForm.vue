@@ -1,6 +1,6 @@
 <template>
     <div>
-        <b-form @submit="onSubmit" @reset="onReset">
+        <b-form @submit.prevent="onSubmit">
             <b-form-group
                 id="token-group"
                 label="GitHub Token:"
@@ -28,7 +28,11 @@
                 to learn how to make a token
             </b-alert>
 
-            <b-button type="submit" variant="primary">Save Token</b-button>
+            <b-button
+                type="submit"
+                variant="primary"
+                :disabled="showAlert"
+            >Save Token</b-button>
         </b-form>
     </div>
 </template>
@@ -59,10 +63,16 @@
 
         methods: {
             onSubmit () {
-
-            },
-            onReset () {
-
+                axios
+                    .put('/save-token', {
+                        token: this.form.token
+                    })
+                    .then(function(response) {
+                        console.log(response.data)
+                    })
+                    .catch(function(error) {
+                        console.error(error);
+                    });
             }
         }
     }

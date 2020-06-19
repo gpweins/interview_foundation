@@ -1968,8 +1968,15 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
-    onSubmit: function onSubmit() {},
-    onReset: function onReset() {}
+    onSubmit: function onSubmit() {
+      axios.put('/save-token', {
+        token: this.form.token
+      }).then(function (response) {
+        console.log(response.data);
+      })["catch"](function (error) {
+        console.error(error);
+      });
+    }
   }
 });
 
@@ -80244,7 +80251,14 @@ var render = function() {
     [
       _c(
         "b-form",
-        { on: { submit: _vm.onSubmit, reset: _vm.onReset } },
+        {
+          on: {
+            submit: function($event) {
+              $event.preventDefault()
+              return _vm.onSubmit($event)
+            }
+          }
+        },
         [
           _c(
             "b-form-group",
@@ -80294,9 +80308,17 @@ var render = function() {
               ])
             : _vm._e(),
           _vm._v(" "),
-          _c("b-button", { attrs: { type: "submit", variant: "primary" } }, [
-            _vm._v("Save Token")
-          ])
+          _c(
+            "b-button",
+            {
+              attrs: {
+                type: "submit",
+                variant: "primary",
+                disabled: _vm.showAlert
+              }
+            },
+            [_vm._v("Save Token")]
+          )
         ],
         1
       )
