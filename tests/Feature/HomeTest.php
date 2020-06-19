@@ -36,7 +36,7 @@ class HomeTest extends TestCase
         $response->assertSee('Laravel');
         $response->assertSee($user->name);
         $response->assertSee('Logout');
-        $response->assertSee('You are logged in!');
+        $response->assertSee('github-token-form');
 
         $response->assertStatus(200);
     }
