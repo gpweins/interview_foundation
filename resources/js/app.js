@@ -6,6 +6,7 @@
 
 require('./bootstrap');
 import BootstrapVue from 'bootstrap-vue';
+import store from './store';
 
 window.Vue = require('vue');
 
@@ -23,6 +24,7 @@ Vue.use(BootstrapVue);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('github-token-form', require('./components/GitHubTokenForm.vue').default);
+Vue.component('github-starred-repos', require('./components/GitHubStarredRepositories.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -32,4 +34,7 @@ Vue.component('github-token-form', require('./components/GitHubTokenForm.vue').d
 
 const app = new Vue({
     el: '#app',
+    data: {
+        store
+    },
 });
