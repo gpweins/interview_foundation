@@ -1918,6 +1918,28 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'GitHubStarredRepositories',
   props: {
@@ -1929,6 +1951,30 @@ __webpack_require__.r(__webpack_exports__);
   computed: {
     hasToken: function hasToken() {
       return !!(this.token || this.$root.store.getToken());
+    }
+  },
+  data: function data() {
+    return {
+      loaded: false,
+      loading: false,
+      repositories: [],
+      error: null
+    };
+  },
+  methods: {
+    load: function load() {
+      var _this = this;
+
+      this.loading = true;
+      this.error = null;
+      axios.get("/github/starred").then(function (response) {
+        _this.repositories = response.data;
+        _this.loaded = true;
+        _this.loading = false;
+      })["catch"](function (e) {
+        _this.loading = false;
+        _this.error = e.response.data.error;
+      });
     }
   }
 });
@@ -80292,10 +80338,60 @@ var render = function() {
       _c(
         "b-button",
         {
-          attrs: { type: "submit", variant: "primary", disabled: !_vm.hasToken }
+          attrs: {
+            type: "submit",
+            variant: "primary",
+            disabled: !_vm.hasToken
+          },
+          on: {
+            click: function($event) {
+              $event.preventDefault()
+              return _vm.load($event)
+            }
+          }
         },
         [_vm._v("Get Starred Repos")]
-      )
+      ),
+      _vm._v(" "),
+      _vm.loading
+        ? _c("div", { staticClass: "my-3" }, [
+            _c(
+              "p",
+              [
+                _vm._v("\n            Getting your data\n            "),
+                _c("b-spinner", { attrs: { small: "", variant: "primary" } })
+              ],
+              1
+            )
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.loaded
+        ? _c(
+            "b-list-group",
+            { staticClass: "my-3" },
+            _vm._l(_vm.repositories.data, function(repository) {
+              return _c(
+                "b-list-group-item",
+                {
+                  key: repository.id,
+                  staticClass: "my-1",
+                  attrs: { href: repository.html_url, target: "_blank" }
+                },
+                [_vm._v(_vm._s(repository.name))]
+              )
+            }),
+            1
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.error
+        ? _c(
+            "b-alert",
+            { staticClass: "m-3", attrs: { show: "", variant: "danger" } },
+            [_vm._v(_vm._s(_vm.error))]
+          )
+        : _vm._e()
     ],
     1
   )
