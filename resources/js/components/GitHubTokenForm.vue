@@ -64,13 +64,14 @@
         methods: {
             onSubmit () {
                 axios
-                    .put('/save-token', {
+                    .put('/github/token', {
                         token: this.form.token
                     })
-                    .then(function(response) {
-                        console.log(response.data)
+                    .then(response => {
+                        console.log(response.data);
+                        this.$root.store.setToken(this.form.token);
                     })
-                    .catch(function(error) {
+                    .catch(error => {
                         console.error(error);
                     });
             }

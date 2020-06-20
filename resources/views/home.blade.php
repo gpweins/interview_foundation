@@ -19,6 +19,7 @@
             </div>
         </div>
         <div class="col-md-8">
+            <github-starred-repos token={{ $token ? $token : '' }}></github-starred-repos>
         </div>
     </div>
 </div>

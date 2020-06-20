@@ -16,22 +16,6 @@ class HomeTest extends TestCase
      *
      * @return void
      */
-    public function test_authenticated_user_can_see_welcome_page()
-    {
-        $user = factory(User::class)->create();
-
-        $response = $this->actingAs($user)->get('/');
-
-        $response->assertSee('Laravel');
-        $response->assertSee('Home');
-
-        $response->assertStatus(200);
-    }
-
-    /**
-     *
-     * @return void
-     */
     public function test_authenticated_user_can_see_home_page()
     {
         $user = factory(User::class)->create();
