@@ -24,5 +24,4 @@ class GitHubService implements GitHubServiceInterface
 
         return $client->currentUser()->starring()->all();
     }
-
 }
